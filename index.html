@@ -11,9 +11,28 @@
     <div id="example"></div>
 
     <script type="text/babel">
+      class Block extends React.Component {
+        render() {
+          const num = 20;
+
+          return (
+            <div>
+              <h3>It is {num}</h3>
+              <p>Это простой текст</p>
+            </div>
+          );
+        }
+      }
+
+      const place = document.getElementById("example");
+
       ReactDOM.render(
-        <div><h3>Hi, it is me!</h3></div>,
-        document.getElementById("example")
+        <div>
+          <Block/>
+          <Block/>
+          <Block/>
+        </div>,
+        place
       );
     </script>
   </body>
