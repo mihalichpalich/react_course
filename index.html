@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="css/main.css">
     <title>Hello World</title>
     <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
@@ -11,26 +12,34 @@
     <div id="program"></div>
 
     <script type="text/babel">
-      class Game extends React.Component {
+      class Task extends React.Component {
+        edit() {
+          alert("Нажата кнопка редактировать");
+        };
+
+        remove() {
+          alert("Нажата кнопка удалить");
+        };
+
         render() {
           return (
-            <div>
-              <h1>{this.props.name}</h1>
-              <h2>{this.props.age}</h2>
+            <div className="box">
+              <div className="text">{this.props.children}</div>
+              <button onClick={this.edit} className="btn light">Редактировать</button>
+              <button onClick={this.remove} className="btn red">Удалить</button>
             </div>
           );
-        }
+        };
       }
 
       const app = document.getElementById("program");
 
       ReactDOM.render(
-      <div>
-        <Game name="Forza" age="18+"/>
-        <Game name="Mortal Combat" age="17+"/>
-        <Game name="GTA" age="16+"/>
-      </div>,
-      app);
+        <div className="field">
+          <Task>Hey, it is me!</Task>
+          <Task>Task number 2!</Task>
+          <Task>Hello World!</Task>
+        </div>, app);
     </script>
   </body>
 </html>
