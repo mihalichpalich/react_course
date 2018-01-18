@@ -13,15 +13,26 @@
 
     <script type="text/babel">
       class Task extends React.Component {
-        edit() {
-          alert("Нажата кнопка редактировать");
+        constructor(props) {
+          super(props);
+          this.state = {
+            edit: false,
+          };
         };
 
-        remove() {
+        edit = () => {
+          this.setState({edit: true});
+        };
+
+        remove = () => {
           alert("Нажата кнопка удалить");
         };
 
-        render() {
+        save = () => {
+          this.setState({edit: false});
+        };
+
+        rendNorm = () => {
           return (
             <div className="box">
               <div className="text">{this.props.children}</div>
@@ -29,6 +40,23 @@
               <button onClick={this.remove} className="btn red">Удалить</button>
             </div>
           );
+        }
+
+        rendEdit = () => {
+          return (
+            <div className="box">
+              <textarea defaultValue={this.props.children} name="" id="" cols="30" rows="10"></textarea>
+              <button onClick={this.save} className="btn success">Сохранить</button>
+            </div>
+          );
+        }
+
+        render() {
+          if (this.state.edit) {
+            return this.rendEdit();
+          } else {
+            return this.rendNorm();
+          }
         };
       }
 
