@@ -55,3 +55,14 @@ button.btn {
   background-color: #b6821a;
   border-color: #946912;
 }
+
+.btn.new {
+  margin-bottom: 20px;
+  background-color: #4f0070;
+  border: 2px solid darkblue;
+}
+
+.btn.new:hover {
+  background-color: #572523;
+  border-color: #4d4d4d;
+}
