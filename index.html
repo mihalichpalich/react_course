@@ -29,6 +29,7 @@
         };
 
         save = () => {
+          var value = this.refs.newTxt.value;
           this.setState({edit: false});
         };
 
@@ -45,7 +46,7 @@
         rendEdit = () => {
           return (
             <div className="box">
-              <textarea defaultValue={this.props.children} name="" id="" cols="30" rows="10"></textarea>
+              <textarea ref="newTxt" defaultValue={this.props.children} name="" id="" cols="30" rows="10"></textarea>
               <button onClick={this.save} className="btn success">Сохранить</button>
             </div>
           );
