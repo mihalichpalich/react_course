@@ -25,11 +25,11 @@
         };
 
         remove = () => {
-          alert("Нажата кнопка удалить");
+          this.props.deleteBlock(this.props.index);
         };
 
         save = () => {
-          var value = this.refs.newTxt.value;
+          this.props.update(this.refs.newTxt.value, this.props.index);
           this.setState({edit: false});
         };
 
@@ -87,7 +87,7 @@
 
         eachTask = (item, i) => {
           return (
-            <Task key={i} index={i}>
+            <Task key={i} index={i} update={this.updateText} deleteBlock={this.deleteBlock}>
               {item}
             </Task>);
         };
