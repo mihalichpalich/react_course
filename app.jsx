@@ -1,20 +1,11 @@
-// function Hero(props) { //получаем объект со свойствами из рендера
-//   let count = 0; //count нельзя получить как свойство, потому что свойства не меняются
-
-//   function handleClick() {
-//     count += 1;
-//     console.log(count);
-//   }
-
-//   return (
-//     <div className="container">
-//       <div className="count">{count}</div>
-//       <img src={props.imageUrl} onClick={handleClick}/>
-//       <h1>{props.title}</h1>
-//       <p>{props.subtitle}</p>
-//     </div>
-//   );
-// }
+var ImageCounter = function(props) {
+  return(
+    <div className="image-counter"> {/*применяем обертку, потому что передаем 2 элемента*/}
+      <div className="count">{props.count}</div>
+      <img src={`img/${props.imageUrl}`} onClick={props.onCount}/>
+    </div>
+  ); //в качестве элементов объекта с переменными - названия свойств
+}
 
 var Hero = React.createClass({
   getInitialState: function() { //задаем начальное состояние
@@ -30,8 +21,7 @@ var Hero = React.createClass({
   render: function() {
     return (
       <div className="container">
-        <div className="count">{this.state.count}</div>
-        <img src={this.props.imageUrl} onClick={this.handleClick}/>
+        <ImageCounter imageUrl={this.props.imageUrl} count={this.state.count} onCount={this.handleClick} /> {/*свойства начинающиеся на on обозначают события*/}
         <h1>{this.props.title}</h1>
         <p>{this.props.subtitle}</p>
       </div>
@@ -39,13 +29,47 @@ var Hero = React.createClass({
   }
 });
 
-ReactDOM.render(
-  <div>
-    <Hero title="React"
-        subtitle="Библиотека для создания пользовательских интерфейсов"
-        imageUrl="https://cdn.worldvectorlogo.com/logos/react.svg" />
-    <Hero title="Angular 2"
-        subtitle="Один фремворк"
-        imageUrl="https://angular.io/assets/images/logos/angular/angular.png" />
-  </div>,
-document.getElementById('root')); //2 компонета нельзя передавать одновременно, их нужно обернуть
+var App = React.createClass({
+  render: function() {
+    return (
+      <div>
+        {this.props.heroes.map(function(hero) {
+          return <Hero
+            key={hero.id}
+            title={hero.title}
+            subtitle={hero.subtitle}
+            imageUrl={hero.imageUrl} />
+        })}
+      </div>
+    );
+  }
+});
+
+var data = [
+    {
+      id: 1,
+      title: 'React',
+      subtitle: 'Библиотека для создания пользовательских интерфейсов',
+      imageUrl: 'react.png'
+    },
+    {
+      id: 2,
+      title: 'Angular 2',
+      subtitle: 'Один фреймворк',
+      imageUrl: 'angular.png'
+    },
+    {
+      id: 3,
+      title: 'Ember',
+      subtitle: 'Фреймворк для создания амбициозных веб-приложений',
+      imageUrl: 'ember.png'
+    },
+    {
+      id: 4,
+      title: 'Vue',
+      subtitle: 'Прогрессивный фреймворк',
+      imageUrl: 'vue.png'
+    }
+];
+
+ReactDOM.render(<App heroes={data} />, document.getElementById('root')); //2 компонета нельзя передавать одновременно, их нужно обернуть
