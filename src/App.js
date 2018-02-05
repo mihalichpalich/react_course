@@ -1,15 +1,14 @@
 import React, {Component} from 'react';
 
-class App extends Component {
-  submit = () => {
-    console.log('submit', this.testInput.value);
-  }
+import {css} from 'aphrodite/no-important'; //отключаем !important
+import styles from './AppStyles.js';
 
+class App extends Component {
   render() {
     return (
-      <div>
-        <input type="text" placeholder="test" ref={(input) => this.testInput = input}/>{/* ref лучше использовать когда нельзя использовать props или state*/}
-        <button onClick={this.submit}>Submit</button>
+      <div className={css(styles.container)}>
+        <div>Our App</div>
+        <div className={css(styles.square)}></div>
       </div>
     );
   }
