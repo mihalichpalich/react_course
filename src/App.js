@@ -1,29 +1,14 @@
 import React, {Component} from 'react';
 
-import Header from './Header.js';
-
-const menu = [
-  {
-    link: '/articles',
-    label: 'Articles'
-  },
-  {
-    link: '/contacts',
-    label: 'Contacts'
-  },
-  {
-    link: '/posts',
-    label: 'Posts'
-  }
-];
+import RegistrationForm from './RegistrationForm.js';
 
 class App extends Component {
 
 
-  render() { //самый важный метод класса
+  render() {
     return (
       <div>
-        <Header items={menu} /> {/*пробрасываем menu в Header через атрибут items*/}
+        <RegistrationForm />
       </div>
     );
   }
